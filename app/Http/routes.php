@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/upload/settuweb', 'SettuwebController@upload_settuweb')->name('uploadsettuweb');
 
     Route::get('/download/file/{id}/{type}', 'SettuwebController@download_file')->name('download');
-    Route::get('/downloadZip/{id}', 'SettuwebController@downloadZip')->name('downloadZip');
+    Route::get('/downloadZip/{upload}', 'SettuwebController@downloadZip')->name('downloadZip');
 });
 
 // Route::middleware(['auth'])->group(function () {
