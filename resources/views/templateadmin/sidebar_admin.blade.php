@@ -85,14 +85,10 @@
 						<h4 class="text-section">Keluar</h4>
 					</li>
 					<li class="nav-item">
-						<a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-							<i class="fas fa-home"></i>
+						<a href="{{ url('/logout') }}">
+							<i class="fas fa-sign-out-alt"></i>
 							<p>Keluar</p>
 						</a>
-						<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-							{{ csrf_field() }}
-						</form>
 					</li>
 					<!-- <li class="nav-item">
 							<a data-toggle="collapse" href="#forms">

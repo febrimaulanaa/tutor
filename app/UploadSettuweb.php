@@ -8,6 +8,7 @@ class UploadSettuweb extends Model
 {
     public $timestamps = false;
     protected $fillable = [
+        'nama',
         'rekap',
         'kompetensi',
         'rat',
