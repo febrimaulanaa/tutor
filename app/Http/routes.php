@@ -13,63 +13,61 @@
 
 Route::auth();
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', function ($guard = null) {
-        if (Auth::guard($guard == 'admin')->check()) {
-            return redirect('/admin');
-        }
-	})->middleware('auth');
-    
-    Route::get('/', function () {
-        return view('login');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', function() {
+        if(auth()->user()->hasRole('Admin'))
+            return redirect()->route('admin.home');
+
+        // return redirect()->route()
     });
+    
+    Route::group(['middleware' => 'role:Admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::get('/', 'HomeController@index')->name('home');
 
-// Route untuk user yang baru register
-Route::group(['prefix' => 'home', 'middleware' => ['auth']], function(){
-	Route::get('/', function(){
-		$data['role'] = \App\UserRole::whereUserId(Auth::id())->get();
-		return view('home', $data);
-	});
-	Route::post('upgrade', function(Request $request){
-		if($request->ajax()){
-			$msg['success'] = 'false';
-			$user = \App\User::find($request->id);
-			if($user)
-				$user->putRole($request->level);
-				$msg['success'] = 'true';
+        Route::get('/dashboard', 'SettuwebController@tampil')->name('dashboard');
 
-			return response()
-				->json($msg);
-		}
-	});
+        //create user
+        Route::get('/createusers', 'AdminController@create')->name('createuser');
+        Route::post('/user', 'AdminController@storeusers')->name('user');
+    });
+    
+    // Route::group(['middleware' => 'role:Member', 'prefix' => 'member', 'as' => 'member.'], function() {
+    //     Route::get('/', 'HomeController@index')->name('home');
+    // });
+
+    Route::get('/settuweb', 'SettuwebController@index')->name('settuweb');
+    Route::post('/upload/settuweb', 'SettuwebController@upload_settuweb')->name('uploadsettuweb');
+
+    Route::get('/download/file/{id}/{type}', 'SettuwebController@download_file')->name('download');
+    Route::get('/downloadZip/{id}', 'SettuwebController@downloadZip')->name('downloadZip');
 });
 
-// Route untuk user admin
-	Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin']], function(){
-	Route::get('/', function(){
-		$data['users'] = \App\User::whereDoesntHave('roles')->get();
-        $upload_settuweb = DB::SELECT('select * from upload_settuweb');
-		return view('admin.dashboard_settuweb', $data)->with(compact('upload_settuweb'));
-	});
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/', function ($guard = null) {
+//         if (Auth::guard($guard == 'admin')->check()) {
+//             return redirect('/admin');
+//         }
+//     })->middleware('auth');
 
-// Route untuk user yang member
-Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member']], function(){
-	Route::get('/', function(){
-		return view('formupload.setelahtuweb.settuweb');
-	});
-});
+//     Route::get('/', function () {
+//         return view('login');
+//     });
 
-Route::get('/settuweb','SettuwebController@index')->name('settuweb');
-Route::post('/upload/settuweb','SettuwebController@upload_settuweb')->name('uploadsettuweb');
+//     // Route untuk user admin
+//     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+//         Route::get('/', function () {
+//             $data['users'] = \App\User::whereDoesntHave('roles')->get();
+//             $upload_settuweb = DB::SELECT('select * from upload_settuweb');
+//             return view('admin.dashboard_settuweb', $data)->with(compact('upload_settuweb'));
+//         });
+//     });
 
-Route::get('/dashboard','SettuwebController@tampil')->name('dashboard');
+//     // Route untuk user yang member
+//     Route::group(['prefix' => 'member', 'middleware' => ['auth', 'role:member']], function () {
+//         Route::get('/', function () {
+//             return view('formupload.setelahtuweb.settuweb');
+//         });
+//     });
 
-Route::get('/download/file/{id}/{type}', 'SettuwebController@download_file')->name('download');
-Route::get('/downloadZip/{id}', 'SettuwebController@downloadZip')->name('downloadZip');
-
-//create user
-Route::get('/createusers', 'AdminController@create')->name('createuser');
-Route::post('/user', 'AdminController@storeusers')->name('user');
-	
-});
+//     
+// });

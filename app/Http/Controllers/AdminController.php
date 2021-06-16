@@ -2,42 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
 use App\User;
 use App\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
     public function create()
 	{
-		return view('admin.createuser');
+		$roles = Role::all();
+		return view('admin.createuser', compact('roles'));
 	}
 
 
-	public function storeusers(Request $request)
+	public function storeusers(UserStoreRequest $request)
 	{
-		$request->validate([
-			'name' => 'required|string|max:255',
-			'email' => 'required|string|email|max:255|unique:users',
-			'password' => 'required|string|min:6|confirmed'
-		]);
-
-		$users = new User;
-		$users->name = $request->name;
-		$users->email = $request->email;
-		$users->password = Hash::make($request->password);
-		$users->save();
-
-		if ($users->id != NULL) {
-			$role = new UserRole;
-			$role->user_id = $users->id;
-			$role->role_id = $request->role_id;
-			$role->save();
-		}
-
-		Alert::success('Berhasil', 'Data Berhasil di Input');
+		$user = User::create([
+			'name' => $request->name,
+			'email' => $request->email,
+			'password' => bcrypt($request->password)
+		])->assignRole($request->role);
 		return redirect()->back();
 	}
 }

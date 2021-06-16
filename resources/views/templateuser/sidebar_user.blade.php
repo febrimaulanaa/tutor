@@ -18,12 +18,6 @@
 						</div>
 					</div> -->
 					<ul class="nav nav-primary">
-						<!-- <li class="nav-item {{(Request::segment(1) == 'dashboard') ? 'active' :''}}">
-							<a data-toggle="" href="{{route('dashboard')}}" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
-								<p>Dashboard</p>
-							</a>
-						</li> -->
 						<li class="nav-section">
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>
@@ -66,18 +60,6 @@
 								</ul>
 							</div>
 						</li>
-							<!-- <li class="nav-section">
-							<span class="sidebar-mini-icon">
-								<i class="fa fa-ellipsis-h"></i>
-							</span>
-							<h4 class="text-section">User</h4>
-						</li> -->
-						<!-- <li class="nav-item {{(Request::segment(1) == 'createusers') ? 'active' :''}}">
-							<a data-toggle="" href="{{route('createuser')}}" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
-								<p>Create User</p>
-							</a>
-						</li> -->
 						<li class="nav-section">
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>
@@ -85,12 +67,12 @@
 							<h4 class="text-section">Keluar</h4>
 						</li>
 						<li class="nav-item">
-							<a href="{{ route('logout') }}" onclick="event.preventDefault();
+							<a href="{{ url('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
 								<i class="fas fa-home"></i>
 								<p>Keluar</p>
 							</a>
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							<form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
 						</li>

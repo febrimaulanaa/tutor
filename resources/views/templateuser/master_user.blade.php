@@ -2,6 +2,4 @@
 
 @yield('content')
 
-@include('sweetalert::alert')
-
 @include('templateuser.footer_user')
