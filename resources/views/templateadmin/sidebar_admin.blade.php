@@ -19,18 +19,18 @@
 					</div> -->
 				<ul class="nav nav-primary">
 					<li class="nav-item {{(Request::segment(1) == 'admin') ? 'active' :''}}">
-						<a data-toggle="" href="{{route('admin.home')}}" class="collapsed" aria-expanded="false">
+						<a data-toggle="" href="{{route('admin.dashboard')}}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<p>Dashboard</p>
 						</a>
 					</li>
-					{{-- <li class="nav-section">
+					<li class="nav-section">
 						<span class="sidebar-mini-icon">
 							<i class="fa fa-ellipsis-h"></i>
 						</span>
 						<h4 class="text-section">Components</h4>
 					</li>
-					<li class="nav-item submenu {{(Request::segment(1) == 'settuweb') ? 'active' :''}}">
+					<li class="nav-item submenu {{(Request::segment(1) == 'admin' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
 						<a data-toggle="collapse" href="#sidebarLayouts">
 							<i class="fas fa-th-list"></i>
 							<p>Sidebar</p>
@@ -38,7 +38,7 @@
 						</a>
 						<div class="collapse" id="sidebarLayouts">
 							<ul class="nav nav-collapse">
-								<li class="{{(Request::segment(1) == 'settuweb') ? 'active' :''}}">
+								<li class="{{(Request::segment(1) == 'admin' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
 									<a href="{{route('settuweb')}}">
 										<span class="sub-item">Upload</span>
 									</a>
@@ -72,8 +72,8 @@
 						</span>
 						<h4 class="text-section">User</h4>
 					</li>
-					<li class="nav-item {{(Request::segment(1) == 'createusers') ? 'active' :''}}">
-						<a data-toggle="" href="{{route('createuser')}}" class="collapsed" aria-expanded="false">
+					<li class="nav-item {{(Request::segment(1) == 'admin' && Request::segment(2) == 'createuser') ? 'active' :''}}">
+						<a data-toggle="" href="{{route('admin.createuser')}}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<p>Create User</p>
 						</a>
@@ -85,15 +85,15 @@
 						<h4 class="text-section">Keluar</h4>
 					</li>
 					<li class="nav-item">
-						<a href="{{ route('logout') }}" onclick="event.preventDefault();
+						<a href="{{ url('/logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
 							<i class="fas fa-home"></i>
 							<p>Keluar</p>
 						</a>
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 						</form>
-					</li> --}}
+					</li>
 					<!-- <li class="nav-item">
 							<a data-toggle="collapse" href="#forms">
 								<i class="fas fa-pen-square"></i>

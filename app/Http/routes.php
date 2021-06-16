@@ -17,15 +17,29 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', function() {
         if(auth()->user()->hasRole('Admin'))
             return redirect()->route('admin.home');
+
+        // return redirect()->route()
     });
     
     Route::group(['middleware' => 'role:Admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', 'HomeController@index')->name('home');
-    });
 
+        Route::get('/dashboard', 'SettuwebController@tampil')->name('dashboard');
+
+        //create user
+        Route::get('/createusers', 'AdminController@create')->name('createuser');
+        Route::post('/user', 'AdminController@storeusers')->name('user');
+    });
+    
     // Route::group(['middleware' => 'role:Member', 'prefix' => 'member', 'as' => 'member.'], function() {
     //     Route::get('/', 'HomeController@index')->name('home');
     // });
+
+    Route::get('/settuweb', 'SettuwebController@index')->name('settuweb');
+    Route::post('/upload/settuweb', 'SettuwebController@upload_settuweb')->name('uploadsettuweb');
+
+    Route::get('/download/file/{id}/{type}', 'SettuwebController@download_file')->name('download');
+    Route::get('/downloadZip/{id}', 'SettuwebController@downloadZip')->name('downloadZip');
 });
 
 // Route::middleware(['auth'])->group(function () {
@@ -55,15 +69,5 @@ Route::group(['middleware' => 'auth'], function() {
 //         });
 //     });
 
-//     Route::get('/settuweb', 'SettuwebController@index')->name('settuweb');
-//     Route::post('/upload/settuweb', 'SettuwebController@upload_settuweb')->name('uploadsettuweb');
-
-//     Route::get('/dashboard', 'SettuwebController@tampil')->name('dashboard');
-
-//     Route::get('/download/file/{id}/{type}', 'SettuwebController@download_file')->name('download');
-//     Route::get('/downloadZip/{id}', 'SettuwebController@downloadZip')->name('downloadZip');
-
-//     //create user
-//     Route::get('/createusers', 'AdminController@create')->name('createuser');
-//     Route::post('/user', 'AdminController@storeusers')->name('user');
+//     
 // });

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\upload_settuweb;
+use App\UploadSettuweb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 use ZipArchive;
 
 class SettuwebController extends Controller
@@ -397,8 +397,8 @@ class SettuwebController extends Controller
 
     public function tampil()
     {
-          $upload_settuweb = upload_settuweb::all();
-          return view('admin.dashboard_settuweb')->with(compact('upload_settuweb'));
+          $upload_settuweb = UploadSettuweb::all();
+          return view('admin.dashboard_settuweb', compact('upload_settuweb'));
     }
 
     public function download_file($id, $type)

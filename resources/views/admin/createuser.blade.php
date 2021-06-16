@@ -9,7 +9,7 @@
             <div class="row">
                 </br>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('user') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('admin.user') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -69,10 +69,11 @@
                             <label for="Roles" class="col-md-4 control-label">Roles</label>
 
                             <div class="col-md-12">
-                                <select class="form-control" name="role_id" id="admin">
-                                    <option value="0">--Pilih Role--</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">User</option>
+                                <select class="form-control" name="role" id="admin">
+                                    <option value="">--Pilih Role--</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endforeach
                                 </select>
                                 <br>
                             </div>
