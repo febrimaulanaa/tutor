@@ -18,13 +18,13 @@
 						</div>
 					</div> -->
 				<ul class="nav nav-primary">
-					<li class="nav-item {{(Request::segment(1) == 'dashboard') ? 'active' :''}}">
-						<a data-toggle="" href="{{route('dashboard')}}" class="collapsed" aria-expanded="false">
+					<li class="nav-item {{(Request::segment(1) == 'admin') ? 'active' :''}}">
+						<a data-toggle="" href="{{route('admin.home')}}" class="collapsed" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<p>Dashboard</p>
 						</a>
 					</li>
-					<li class="nav-section">
+					{{-- <li class="nav-section">
 						<span class="sidebar-mini-icon">
 							<i class="fa fa-ellipsis-h"></i>
 						</span>
@@ -93,7 +93,7 @@
 						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							{{ csrf_field() }}
 						</form>
-					</li>
+					</li> --}}
 					<!-- <li class="nav-item">
 							<a data-toggle="collapse" href="#forms">
 								<i class="fas fa-pen-square"></i>

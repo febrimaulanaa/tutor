@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UploadSettuweb;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard_settuweb');
+        $upload_settuweb = UploadSettuweb::all();
+        return view('admin.dashboard_settuweb', compact('upload_settuweb'));
     }
 }

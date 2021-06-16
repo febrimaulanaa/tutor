@@ -14,13 +14,18 @@
 Route::auth();
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', function() {
+        if(auth()->user()->hasRole('Admin'))
+            return redirect()->route('admin.home');
+    });
+    
     Route::group(['middleware' => 'role:Admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::get('/', 'HomeController@index')->name('home');
     });
 
-    Route::group(['middleware' => 'role:Member', 'prefix' => 'member', 'as' => 'member.'], function() {
-        Route::get('/', 'HomeController@index')->name('home');
-    });
+    // Route::group(['middleware' => 'role:Member', 'prefix' => 'member', 'as' => 'member.'], function() {
+    //     Route::get('/', 'HomeController@index')->name('home');
+    // });
 });
 
 // Route::middleware(['auth'])->group(function () {
