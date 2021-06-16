@@ -48,42 +48,50 @@ class SettuwebController extends Controller
 
         ]);
 
-        $upload = new upload_settuweb;
-        $upload->rekap = $request->rekap;
-        $upload->kompetensi = $request->kompetensi;
-        $upload->rat = $request->rat;
-        $upload->sat = $request->sat;
-        $upload->kisitugastutorial = $request->kisitugastutorial;
-        $upload->materi = $request->materi;
-        $upload->materi2 = $request->materi2;
-        $upload->materi3 = $request->materi3;
-        $upload->materi4 = $request->materi4;
-        $upload->materi5 = $request->materi5;
-        $upload->materi6 = $request->materi6;
-        $upload->materi7 = $request->materi7;
-        $upload->materi8 = $request->materi8;
-        $upload->catatan = $request->catatan;
-        $upload->kisi = $request->kisi;
-        $upload->kisi2 = $request->kisi2;
-        $upload->kisi3 = $request->kisi3;
-        $upload->pedoman = $request->pedoman;
-        $upload->pedoman2 = $request->pedoman2;
-        $upload->pedoman3 = $request->pedoman3;
-        $upload->tandaterima = $request->tandaterima;
-        $upload->tandaterima2 = $request->tandaterima2;
-        $upload->tandaterima3 = $request->tandaterima3;
-        $upload->nilaitertinggi = $request->nilaitertinggi;
-        $upload->nilaiterendah = $request->nilaiterendah;
-        $upload->sspertemuan = $request->sspertemuan;
+        $data = [
+            "rekap" => $request->rekap,
+            "kompetensi" => $request->kompetensi,
+            "rat" => $request->rat,
+            "sat" => $request->sat,
+            "kisitugastutorial" => $request->kisitugastutorial,
+            "materi" => $request->materi,
+            "materi2" => $request->materi2,
+            "materi3" => $request->materi3,
+            "materi4" => $request->materi4,
+            "materi5" => $request->materi5,
+            "materi6" => $request->materi6,
+            "materi7" => $request->materi7,
+            "materi8" => $request->materi8,
+            "catatan" => $request->catatan,
+            "kisi" => $request->kisi,
+            "kisi2" => $request->kisi2,
+            "kisi3" => $request->kisi3,
+            "pedoman" => $request->pedoman,
+            "pedoman2" => $request->pedoman2,
+            "pedoman3" => $request->pedoman3,
+            "tandaterima" => $request->tandaterima,
+            "tandaterima2" => $request->tandaterima2,
+            "tandaterima3" => $request->tandaterima3,
+            "nilaitertinggi" => $request->nilaitertinggi,
+            "nilaiterendah" => $request->nilaiterendah,
+            "sspertemuan" => $request->sspertemuan,
+        ];
 
-
-        if ($request->hasFile('rekap')) {
-            $file = $request->file('rekap');
-            $extension = $file->getClientOriginalName();
-            $filename = time() . '.' . $extension;
-            $file->move('file/rekap', $filename);
-            $upload->rekap = $filename;
+        foreach($data as $key => $value) {
+            if ($request->hasFile($key)) {
+                $file = $request->file($key);
+                $extension = $file->getClientOriginalName();
+                $filename = time() . '.' . $extension;
+                $file->move('file/'.$key, $filename);
+                $data[$key] = $filename;
+            }
         }
+
+        return dd($data);
+
+        $upload = UploadSettuweb::create($data);
+
+        
         if (isset($filename)) {
             $upload->rekap = $filename;
         } else {
@@ -390,8 +398,6 @@ class SettuwebController extends Controller
             $upload->sspertemuan = '';
         }
 
-        $upload->save();
-        Alert::success('Berhasil', 'Terimakasih Atas Partisipasinya');
         return redirect()->back();
     } 
 
