@@ -3,11 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
+<<<<<<< HEAD
         <div class="col-md-8 col-md-offset-2">
+=======
+        <div class="col-md-10 col-md-offset-1">
+>>>>>>> f90d6ef7e047064ebdbfb215f4a75833aee4fd96
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
+<<<<<<< HEAD
                     <div class="alert alert-success">
                         <p>
                             Selamat Datang di ONPHPID Tutorial
@@ -19,12 +24,16 @@
                             @endif
                         </p>
                     </div>
+=======
+                    You are logged in!
+>>>>>>> f90d6ef7e047064ebdbfb215f4a75833aee4fd96
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+<<<<<<< HEAD
 @section('script')
 <script>
     $.ajaxSetup({
@@ -55,3 +64,5 @@
     });
 </script>
 @endsection
+=======
+>>>>>>> f90d6ef7e047064ebdbfb215f4a75833aee4fd96
