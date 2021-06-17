@@ -26,6 +26,6 @@ class AdminController extends Controller
 			'email' => $request->email,
 			'password' => bcrypt($request->password)
 		])->assignRole($request->role);
-		return redirect()->back();
+		return redirect()->back()->with('alert', 'Akun Berhasil Dibuat!');;
 	}
 }

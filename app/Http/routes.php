@@ -17,6 +17,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', function() {
         if(auth()->user()->hasRole('Admin'))
             return redirect()->route('admin.home');
+        if(auth()->user()->hasRole('Member'))
+            return redirect()->route('member.home');
 
         // return redirect()->route()
     });
@@ -31,15 +33,17 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/user', 'AdminController@storeusers')->name('user');
     });
     
-    // Route::group(['middleware' => 'role:Member', 'prefix' => 'member', 'as' => 'member.'], function() {
-    //     Route::get('/', 'HomeController@index')->name('home');
-    // });
+    Route::group(['middleware' => 'role:Member', 'prefix' => 'member', 'as' => 'member.'], function() {
+        Route::get('/', 'SettuwebController@index')->name('home');
 
-    Route::get('/settuweb', 'SettuwebController@index')->name('settuweb');
-    Route::post('/upload/settuweb', 'SettuwebController@upload_settuweb')->name('uploadsettuweb');
+        Route::get('/settuweb', 'SettuwebController@index')->name('settuweb');
+        Route::post('/upload/settuweb', 'SettuwebController@upload_settuweb')->name('uploadsettuweb');
+    });
+
 
     Route::get('/download/file/{id}/{type}', 'SettuwebController@download_file')->name('download');
     Route::get('/downloadZip/{upload}', 'SettuwebController@downloadZip')->name('downloadZip');
+    
 });
 
 // Route::middleware(['auth'])->group(function () {
