@@ -24,7 +24,7 @@
 							</span>
 							<h4 class="text-section">Components</h4>
 						</li>
-						<li class="nav-item submenu {{(Request::segment(1) == 'settuweb') ? 'active' :''}}">
+						<li class="nav-item submenu {{(Request::segment(1) == 'member' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
 							<a data-toggle="collapse" href="#sidebarLayouts">
 								<i class="fas fa-th-list"></i>
 								<p>Sidebar</p>
@@ -32,8 +32,8 @@
 							</a>
 							<div class="collapse" id="sidebarLayouts">
 								<ul class="nav nav-collapse">
-									<li class="{{(Request::segment(1) == 'settuweb') ? 'active' :''}}">
-										<a href="{{route('settuweb')}}">
+									<li class="{{(Request::segment(1) == 'member' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
+										<a href="{{route('member.settuweb')}}">
 											<span class="sub-item">Upload</span>
 										</a>
 									</li>

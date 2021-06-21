@@ -45,7 +45,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="white">
 
-				<a href="index.html" class="logo">
+				<a href="" class="logo">
 					<img src="{{asset('atlantis/assets/img/logout.png')}}" width="100%" height="100%" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"

@@ -85,7 +85,7 @@
                                                 <br>
                                             </td>
                                             <td>
-                                            <a style = "position:relative; top:-400px;" href="/downloadZip/{{ $d->id }}" class="btn btn-info">Download ZIP</a>	
+                                            <a href="/downloadZip/{{ $d->id }}" class="btn btn-info">Download ZIP</a>	
                                             </td>
                                         </tr>
                                     @endforeach
@@ -114,4 +114,6 @@
         $('#example').DataTable();
     });
 </script>
+
+
 @endsection

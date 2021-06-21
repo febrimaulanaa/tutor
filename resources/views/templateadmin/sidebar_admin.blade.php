@@ -25,24 +25,24 @@
 						</a>
 					</li>
 					<li class="nav-section">
-						<span class="sidebar-mini-icon">
+						<!-- <span class="sidebar-mini-icon">
 							<i class="fa fa-ellipsis-h"></i>
 						</span>
-						<h4 class="text-section">Components</h4>
+						<h4 class="text-section">Components</h4> -->
 					</li>
 					<li class="nav-item submenu {{(Request::segment(1) == 'admin' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
-						<a data-toggle="collapse" href="#sidebarLayouts">
+						<!-- <a data-toggle="collapse" href="#sidebarLayouts">
 							<i class="fas fa-th-list"></i>
 							<p>Sidebar</p>
 							<span class="caret"></span>
-						</a>
+						</a> -->
 						<div class="collapse" id="sidebarLayouts">
 							<ul class="nav nav-collapse">
-								<li class="{{(Request::segment(1) == 'admin' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
-									<a href="{{route('settuweb')}}">
+								<!-- <li class="{{(Request::segment(1) == 'admin' && Request::segment(2) == 'settuweb') ? 'active' :''}}">
+									<a href="{{route('member.settuweb')}}">
 										<span class="sub-item">Upload</span>
 									</a>
-								</li>
+								</li> -->
 								<!-- <li>
 										<a href="overlay-sidebar.html">
 											<span class="sub-item">Overlay Sidebar</span>

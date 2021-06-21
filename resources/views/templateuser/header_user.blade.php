@@ -45,7 +45,7 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="white">
 
-				<a href="index.html" class="logo">
+				<a href="" class="logo">
 					<img src="{{asset('atlantis/assets/img/logout.png')}}" width="100%" height="100%" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
@@ -237,7 +237,7 @@
 											<div class="u-text">
 												<h4>{{ Auth::user()->name }}</h4>
 												<p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html"
-													class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+													></a>
 											</div>
 										</div>
 									</li>
